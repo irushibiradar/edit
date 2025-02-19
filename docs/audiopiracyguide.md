@@ -621,6 +621,7 @@
 * [X-Minus](https://x-minus.pro/) or [LRC Maker](https://lrcmaker.com/) - Create Karaoke Songs
 * [VB Cables](https://rentry.co/FMHYBase64#vb-cables) - Virtual Audio Cables
 * [Librescore Downloader](https://github.com/LibreScore/dl-librescore) - Librescore Downloader
+* [Speaker Placement Tool](https://academy.gray-spark.com/speaker-placement-tool/) - Place Speakers 
 
 ***
 
