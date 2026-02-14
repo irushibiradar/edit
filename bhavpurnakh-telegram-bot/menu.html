@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="mr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>भावपूर्णख, मेनू</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 0; background: #f6f6f6; color: #111; }
+      .wrap { max-width: 900px; margin: 0 auto; padding: 20px; }
+      .card { background: #fff; border: 1px solid #e8e8e8; border-radius: 14px; padding: 18px; box-shadow: 0 4px 18px rgba(0,0,0,0.04); }
+      h1 { margin: 0 0 6px; font-size: 28px; }
+      .sub { margin: 0 0 14px; color: #666; font-size: 13px; }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+      .section { border: 1px solid #eee; border-radius: 12px; padding: 12px; }
+      .section h2 { margin: 0 0 10px; font-size: 16px; }
+      .item { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px dashed #eee; }
+      .item:last-child { border-bottom: 0; }
+      .name { font-weight: 600; }
+      .meta { font-size: 12px; color: #666; }
+      .price { font-weight: 700; white-space: nowrap; }
+      .search { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid #e6e6e6; margin: 12px 0 14px; font-size: 14px; }
+      .tag { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 999px; background: #f1f1f1; color: #333; margin-left: 8px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <h1>भावपूर्णख</h1>
+        <p class="sub">मेनू, लाईव्ह सर्च, मोबाईल फ्रेंडली</p>
+
+        <input id="q" class="search" placeholder="मेनू सर्च करा, उदा वडापाव, डोसा, चहा" />
+
+        <div class="grid" id="menu"></div>
+      </div>
+    </div>
+
+    <script>
+      const sections = [
+        {
+          title: "नाश्ता आणि स्नॅक्स",
+          items: [
+            { no: 1, name: "उपीट", price: 30 },
+            { no: 2, name: "शिरा", price: 30 },
+            { no: 3, name: "इडली सांबर", price: 35 },
+            { no: 4, name: "इडली वडा", price: 45 },
+            { no: 5, name: "वडा सांबर", price: 45 },
+            { no: 6, name: "आलूवडा", price: 35 },
+            { no: 7, name: "मिरची भजे", price: 30 },
+            { no: 8, name: "साधे भजे", price: 35 },
+            { no: 9, name: "पूरी भाजी", price: 35 },
+            { no: 10, name: "खिचडी", price: 30 },
+            { no: 11, name: "मिसळ पाव", price: 40 },
+            { no: 12, name: "पावभाजी", price: 40 },
+            { no: 13, name: "वडापाव", price: 15 },
+            { no: 14, name: "शाबु खिचडी", price: 40 },
+            { no: 15, name: "शाबु वडा", price: 50 },
+            { no: 16, name: "मसाला डोसा", price: 40 },
+            { no: 17, name: "कट डोसा", price: 50 },
+            { no: 18, name: "सादा डोसा", price: 35 },
+            { no: 19, name: "उत्तप्पा", price: 40 },
+            { no: 20, name: "दहीवडा", price: 40 },
+          ],
+        },
+        {
+          title: "गोड पदार्थ",
+          items: [
+            { no: 21, name: "जामुन", price: 20 },
+            { no: 22, name: "बासुंदी", price: 35 },
+            { no: 23, name: "डिंकलाई", price: 20 },
+            { no: 24, name: "गंगा जामुन", price: 50 },
+            { no: 25, name: "बालुशाई", price: 20 },
+            { no: 26, name: "दहीभपाटी", price: 40 },
+          ],
+        },
+        {
+          title: "थाळी, राईस",
+          items: [
+            { no: 27, name: "चपाती राईस प्लेट", price: 90 },
+            { no: 28, name: "रोटी राईस प्लेट", price: 100 },
+            { no: 29, name: "परोठा राईस प्लेट", price: 90 },
+            { no: 30, name: "सिंगल राईस", price: 60 },
+          ],
+        },
+        {
+          title: "अतिरिक्त, पेय",
+          items: [
+            { no: 31, name: "एक्स्ट्रा रोटी", price: 15 },
+            { no: 32, name: "एक्स्ट्रा चपाती", price: 12 },
+            { no: 33, name: "भाजी वाटी", price: 25 },
+            { no: 34, name: "वरण वाटी", price: 25 },
+            { no: 35, name: "दही वाटी", price: 20 },
+            { no: 36, name: "चहा", price: 10 },
+            { no: 37, name: "स्पे. चहा", price: 15 },
+            { no: 38, name: "स्पे. कॉफी", price: 15 },
+            { no: 39, name: "डिकाशन", price: 20 },
+            { no: 40, name: "स्पे. दूध", price: 15 },
+          ],
+        },
+      ];
+
+      const menuEl = document.getElementById("menu");
+      const qEl = document.getElementById("q");
+
+      function render(filterText = "") {
+        const q = filterText.trim().toLowerCase();
+        menuEl.innerHTML = "";
+
+        sections.forEach(sec => {
+          const matched = sec.items.filter(it => {
+            if (!q) return true;
+            const hay = `${it.no} ${it.name} ${it.price}`.toLowerCase();
+            return hay.includes(q);
+          });
+
+          if (!matched.length) return;
+
+          const secEl = document.createElement("div");
+          secEl.className = "section";
+
+          const h = document.createElement("h2");
+          h.textContent = sec.title;
+          secEl.appendChild(h);
+
+          matched.forEach(it => {
+            const row = document.createElement("div");
+            row.className = "item";
+
+            const left = document.createElement("div");
+            const name = document.createElement("div");
+            name.className = "name";
+            name.textContent = it.name;
+
+            const tag = document.createElement("span");
+            tag.className = "tag";
+            tag.textContent = `#${it.no}`;
+
+            name.appendChild(tag);
+
+            const meta = document.createElement("div");
+            meta.className = "meta";
+            meta.textContent = "रुपये";
+
+            left.appendChild(name);
+            left.appendChild(meta);
+
+            const price = document.createElement("div");
+            price.className = "price";
+            price.textContent = `${it.price}/-`;
+
+            row.appendChild(left);
+            row.appendChild(price);
+            secEl.appendChild(row);
+          });
+
+          menuEl.appendChild(secEl);
+        });
+      }
+
+      qEl.addEventListener("input", e => render(e.target.value));
+      render();
+    </script>
+  </body>
+</html>
